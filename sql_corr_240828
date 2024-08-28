@@ -1,0 +1,24 @@
+# SQL로 상관관계분석을 하려고 했지만,
+# mysql에서는 corr() 함수 사용이 안된다는 것을 늦게 알아서
+# DBeaver에서 쿼리 결과를 csv로 조회하고
+# 이를 jupyter notebook으로 불러온 다음
+# 간단한 상관관계분석을 해보았음
+
+# 1. 파일 불러오기
+import pandas as pd
+df = pd.read_csv('./corr_test_240828.csv')
+df.head()
+
+  
+# 2. scatter plot
+import seaborn as sns
+sns.scatterplot(data = df, x="payment", y="delivery_period")
+
+
+# 3. 상관계수 측정
+df.corr()
+
+
+# 4. 히트맵으로 표시
+# 숫자 포함 옵션 : annot=True
+sns.heatmap(df.corr(), annot=True) 
